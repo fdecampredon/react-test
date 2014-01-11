@@ -37,14 +37,22 @@ function Todo(title, order) {
 
 
 
-if (!nativeObjectObserve) {
+if (!global.nativeObjectObserve) {
 	ObserveUtils.defineObservableProperties(Todo.prototype, 'title', 'completed');
+	Todo.prototype.toJSON = function () {
+		return {
+			order: this.order,
+			title: this.title,
+			id: this.id
+		};
+	};
 }
 
 function TodoList(data) {
 	ObserveUtils.List.call(this);
 	if (data) {
-		for (var i = 0, l = data.length; i < l; i++) {
+		var i = 0, l = data.length;
+		for (i = 0; i < l; i++) {
 			this[i] = data[i];
 		}
 		this._length = data.length;

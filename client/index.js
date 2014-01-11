@@ -7,10 +7,20 @@ if (!nativeObjectObserve) {
 	require('observe-shim');
 }
 
-var TodoApp = require('../common/components'),
-	TodoList = require('../common/model').TodoList,
-	React = require('react'),
-	data = [],//document.querySelector('script[type="text/json"]').innerHTML,
-	TodoList = new TodoList(data);
+Object.assign = function (target, source) {
+	return Object.keys(source).reduce(function (target, key) {
+		target[key] = source[key];
+		return target;
+	}, target);
+};
 
-React.renderComponent(TodoApp({ todos: TodoList }, document.querySelector('#container')));
+var TodoApp = require('../commons/components'),
+	TodoList = require('../commons/model').TodoList,
+	Todo = require('../commons/model').Todo,
+	React = require('react'),
+	data = JSON.parse(document.querySelector('script[type="text/json"]').innerHTML),
+	todos = new TodoList(data.map(function (data) {
+		return Object.assign(new Todo(), data);
+	}));
+
+React.renderComponent(TodoApp({ todos: todos }),  document.querySelector('#container'));

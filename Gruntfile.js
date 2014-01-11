@@ -7,9 +7,7 @@ module.exports = function(grunt) {
 	  	pkg: grunt.file.readJSON('package.json'),
     	
 		browserify: {
-			files: {
-				'public/app.js': ['client/index.js'],
-			},
+			'public/index.js': ['client/index.js'],
 			options: {
 				 debug : true
 			}
