@@ -19,7 +19,8 @@ var todos = new TodoList([
 	new Todo('Say \'Hello world\''),
 	new Todo('Grab some chocolate')
 ]);
-console.log(JSON.stringify(todos.toArray()));
+
+
 function main(req, res, next) {
 	if (req.url === "/") {
 		fs.readFile('./client/index.html', 'UTF-8', function (err, fileContent) {
