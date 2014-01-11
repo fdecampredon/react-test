@@ -28,11 +28,10 @@ function define(target, base, definitions) {
 
 var idHelper = 0;
 
-function Todo(title, order) {
+function Todo(title) {
 	this.title = title;
 	this.completed = false;
 	this.id = 'todo_' + (idHelper++);
-	this.order = order;
 }
 
 
@@ -41,7 +40,6 @@ if (!global.nativeObjectObserve) {
 	ObserveUtils.defineObservableProperties(Todo.prototype, 'title', 'completed');
 	Todo.prototype.toJSON = function () {
 		return {
-			order: this.order,
 			title: this.title,
 			id: this.id
 		};
@@ -70,18 +68,6 @@ define(TodoList, ObserveUtils.List, {
 		return this.filter(function (todo) {
 			return !todo.completed;
 		});
-	},
-	
-	nextOrder: function () {
-		if (!this.length) {
-			return 1;
-		}
-		return this[this.length - 1].order;
-	},
-	
-	  // Todos are sorted by their original insertion order.
-	comparator: function (todo) {
-		return null;
 	}
 });
 
