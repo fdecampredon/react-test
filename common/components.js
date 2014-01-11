@@ -2,7 +2,7 @@
 
 'use strict';
 
-var React = require('React'),
+var React = require('react'),
 	model = require('./model'),
 	Todo = model.Todo;
 
