@@ -73,8 +73,7 @@ var TodoItem = React.createClass({
 					className: 'toggle',
 					type: 'checkbox',
 					checked : this.props.todo.completed,
-					onChange: this.props.onToggle,
-					key: this.props.key
+					onChange: this.props.onToggle
 				}),
 				html.label({onDoubleClick: this.onEdit}, this.props.todo.title),
 				html.button({className: 'destroy', onClick: this.props.onDestroy})
@@ -196,7 +195,6 @@ var TodoApp = React.createClass({
 				main = null,
 				todoItems = this.props.todos.map(function (todo) {
 					return TodoItem({
-						key: Math.random(),
 						todo: todo,
 						onToggle: this.toggle.bind(this, todo),
 						onDestroy: this.remove.bind(this, todo),

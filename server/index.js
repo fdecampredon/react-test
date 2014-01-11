@@ -16,12 +16,12 @@ var connect = require('connect'),
 	Todo = model.Todo;
 
 var todos = new TodoList([
-	new Todo('Say \'Hello world\''),
-	new Todo('Grab some chocolate')
+	new Todo('Say Hello world')
 ]);
 
 
 function main(req, res, next) {
+	
 	if (req.url === "/") {
 		fs.readFile('./client/index.html', 'UTF-8', function (err, fileContent) {
 			React.renderComponentToString(TodoApp({todos: todos}), function (componentString) {

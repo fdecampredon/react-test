@@ -23,4 +23,4 @@ var TodoApp = require('../commons/components'),
 		return Object.assign(new Todo(), data);
 	}));
 
-React.renderComponent(TodoApp({ todos: todos }),  document.querySelector('#container'));
+React.renderComponent(TodoApp({ todos: todos }),  document.getElementById('container'));
